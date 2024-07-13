@@ -3,7 +3,9 @@ const dotenv = require('dotenv');
 const connectDB = require('./db/index.js');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocs = require('./swagger/swaggerOptions.js');
+const userRoutes = require('./routes/userRoutes.js');
 const paymentRoutes = require('./routes/paymentRoutes.js');
+const cookieParser = require('cookie-parser');
 const { errorHandler, notFound } = require('./middleware/errorMiddeware.js');
 
 dotenv.config({ path: "./.env" });
@@ -13,6 +15,9 @@ const app = express();
 // Middleware
 app.use(express.json());
 
+// Middleware to parse cookies
+app.use(cookieParser());
+
 // Connect to database
 connectDB();
 
@@ -20,6 +25,7 @@ connectDB();
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Routes
+app.use('/api/users', userRoutes);
 app.use('/api/payments', paymentRoutes);
 
 // Error Handling Middleware

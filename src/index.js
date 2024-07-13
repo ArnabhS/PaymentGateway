@@ -13,10 +13,8 @@ dotenv.config({ path: "./.env" });
 
 const app = express();
 
-// Middleware
-app.use(express.json());
 
-// Middleware to parse cookies
+app.use(express.json());
 app.use(cookieParser());
 
 // Connect to database

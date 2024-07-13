@@ -5,6 +5,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocs = require('./swagger/swaggerOptions.js');
 const userRoutes = require('./routes/userRoutes.js');
 const paymentRoutes = require('./routes/paymentRoutes.js');
+const { protect } = require('./middleware/authMiddleware.js')
 const cookieParser = require('cookie-parser');
 const { errorHandler, notFound } = require('./middleware/errorMiddeware.js');
 
@@ -26,7 +27,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Routes
 app.use('/api/users', userRoutes);
-app.use('/api/payments', paymentRoutes);
+app.use('/api/payments', protect,paymentRoutes);
 
 // Error Handling Middleware
 app.use(notFound);

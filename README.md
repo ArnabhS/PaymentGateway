@@ -43,8 +43,8 @@ The architecture of the payment gateway service includes the following component
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/payment-gateway-service.git
-    cd payment-gateway-service
+    git clone https://github.com/ArnabhS/PaymentGateway.git
+    cd payment-gateway
     ```
 
 2. Install dependencies:

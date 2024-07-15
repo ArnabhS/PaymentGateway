@@ -15,6 +15,11 @@ const paymentSchema = new mongoose.Schema({
     default: "created",
   },
   transactionId: String,
+  paymentType: {
+    type: String,
+    enum: ["Credit Card", "Debit Card", "Digital Wallet", "Other"],
+    required: true,
+  },
  
 },{timestamps:true});
 

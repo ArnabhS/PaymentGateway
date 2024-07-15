@@ -3,14 +3,15 @@ const Payment = require('../models/payment.model.js');
 // Create a new payment
 const createPayment = async (req, res) => {
   try {
-    const { amount, currency } = req.body;
-    const payment = new Payment({ amount, currency });
+    const { amount, currency, paymentType } = req.body; 
+    const payment = new Payment({ amount, currency, paymentType }); 
     await payment.save();
     res.status(201).json(payment);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // Process a payment 
 const processPayment = async (req, res) => {
@@ -45,7 +46,7 @@ const getPaymentStatus = async (req, res) => {
   }
 };
 
-// Handle refunds (example)
+// Handle refunds 
 const handleRefund = async (req, res) => {
   try {
     const payment = await Payment.findById(req.params.id);

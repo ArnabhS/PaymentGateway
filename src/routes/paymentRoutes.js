@@ -17,6 +17,7 @@ const router = express.Router();
  *       required:
  *         - amount
  *         - currency
+ *         - paymentType 
  *       properties:
  *         id:
  *           type: string
@@ -33,6 +34,10 @@ const router = express.Router();
  *         transactionId:
  *           type: string
  *           description: The transaction ID of the payment
+ *         paymentType: 
+ *           type: string
+ *           description: The type of the payment
+ *           enum: ["Credit Card", "Debit Card", "Digital Wallet", "Other"] 
  *         createdAt:
  *           type: string
  *           format: date
@@ -46,6 +51,7 @@ const router = express.Router();
  *         currency: USD
  *         status: created
  *         transactionId: 123456789
+ *         paymentType: Credit Card 
  */
 
 /**
@@ -127,7 +133,7 @@ router.post('/:id/process', processPayment);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Payment'
+ *               type: string
  *       404:
  *         description: Payment not found
  *       500:
